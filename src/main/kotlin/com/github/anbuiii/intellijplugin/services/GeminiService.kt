@@ -1,5 +1,6 @@
 package com.github.anbuiii.intellijplugin.services
 
+//import com.github.anbuiii.intellijplugin.network.ApiController
 import com.github.anbuiii.intellijplugin.network.ApiController
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
@@ -8,11 +9,11 @@ import com.intellij.openapi.components.Service
 import com.intellij.openapi.project.Project
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.launch
 
-@Service(Service.Level.PROJECT)
+@Service
 class GeminiService(
-    project: Project,
-    cs: CoroutineScope
+    private val cs: CoroutineScope
 ) {
 
     val controller = ApiController()
@@ -30,32 +31,23 @@ class GeminiService(
 
         val text = primaryCaret.selectedText ?: ""
 
-//        coroutineScope.launch {
-//            var answer = controller.askGemini(text)
-//
-//            answer = "/**\n" +
-//                    "$answer\n" +
-//                    "*/\n"
-//
-//            WriteCommandAction.runWriteCommandAction(
-//                project
-//            ) {
-//                document.replaceString(
-//                    start,
-//                    start,
-//                    answer,
-//                )
-//            }
-//
-//        }
-        WriteCommandAction.runWriteCommandAction(
-            projects
-        ) {
-            document.replaceString(
-                start,
-                end,
-                "asdasdasd"
-            )
+        cs.launch {
+            var answer = controller.askGemini(text)
+
+            answer = "/**\n" +
+                    "$answer\n" +
+                    "*/\n"
+
+            WriteCommandAction.runWriteCommandAction(
+                projects
+            ) {
+                document.replaceString(
+                    start,
+                    start,
+                    answer,
+                )
+            }
+
         }
         primaryCaret.removeSelection()
     }

@@ -5,6 +5,7 @@ import com.intellij.openapi.application.ApplicationListener
 import com.intellij.util.application
 import io.ktor.client.*
 import io.ktor.client.call.*
+import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.*
 import io.ktor.client.request.*
 import io.ktor.http.*
@@ -18,7 +19,7 @@ import kotlinx.serialization.json.Json
 
 class ApiController {
     val client by lazy {
-        HttpClient() {
+        HttpClient(CIO) {
             install(DefaultRequest) {
                 contentType(ContentType.Application.Json)
             }

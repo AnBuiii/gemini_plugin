@@ -7,7 +7,7 @@ import com.github.anbuiii.intellijplugin.MyBundle
 import kotlinx.coroutines.CoroutineScope
 
 @Service(Service.Level.PROJECT)
-class MyProjectService(project: Project, cs: CoroutineScope) {
+class MyProjectService(project: Project) {
 
     init {
         thisLogger().info(MyBundle.message("projectService", project.name))
