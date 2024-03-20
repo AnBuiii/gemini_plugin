@@ -13,6 +13,17 @@
     </extensions>
 
     <applicationListeners>
-        <listener class="com.github.anbuiii.intellijplugin.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>
+        <listener class="com.github.anbuiii.intellijplugin.listeners.MyApplicationActivationListener"
+                  topic="com.intellij.openapi.application.ApplicationActivationListener"/>
     </applicationListeners>
+    <actions>
+        <action
+                id="AnBui.GeminiAsk"
+                class="com.github.anbuiii.intellijplugin.action.GeminiAskQuestionAction"
+                text="Explain this!"
+                description="Replaces selected text with 'Replacement'."
+                icon="com.github.anbuiii.intellijplugin.icons.TasksIcons">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </action>
+    </actions>
 </idea-plugin>

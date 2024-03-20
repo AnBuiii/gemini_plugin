@@ -1,5 +1,6 @@
 package com.github.anbuiii.intellijplugin.toolWindow
 
+import ai.grazie.nlp.tokenizer.retokenizer.pattern.PatternRetokenizers
 import com.intellij.openapi.components.service
 import com.intellij.openapi.diagnostic.thisLogger
 import com.intellij.openapi.project.Project
@@ -10,7 +11,9 @@ import com.intellij.ui.components.JBPanel
 import com.intellij.ui.content.ContentFactory
 import com.github.anbuiii.intellijplugin.MyBundle
 import com.github.anbuiii.intellijplugin.services.MyProjectService
+import java.util.UUID
 import javax.swing.JButton
+import kotlin.random.Random
 
 
 class MyToolWindowFactory : ToolWindowFactory {
@@ -41,5 +44,9 @@ class MyToolWindowFactory : ToolWindowFactory {
                 }
             })
         }
+
+//        fun getRandomString(): S{
+//            val a = UUID.fromString("ad").toString()
+//        }
     }
 }
