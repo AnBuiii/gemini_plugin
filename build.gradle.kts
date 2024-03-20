@@ -5,7 +5,7 @@ fun properties(key: String) = providers.gradleProperty(key)
 fun environment(key: String) = providers.environmentVariable(key)
 
 plugins {
-    id("java") // Java support
+//    id("java") // Java support
     alias(libs.plugins.kotlin) // Kotlin support
     alias(libs.plugins.gradleIntelliJPlugin) // Gradle IntelliJ Plugin
 //    alias(libs.plugins.changelog) // Gradle Changelog Plugin
@@ -24,19 +24,20 @@ repositories {
 
 // Dependencies are managed with Gradle version catalog - read more: https://docs.gradle.org/current/userguide/platforms.html#sub:version-catalog
 dependencies {
-    implementation("io.ktor:ktor-client-core:2.3.9") {
-        exclude(group = "org.jetbrains.kotlinx", module = "kotlinx-coroutines-core")
-    }
-    implementation("io.ktor:ktor-client-content-negotiation:2.3.9") {
-        exclude(group = "org.jetbrains.kotlinx", module = "kotlinx-coroutines-core")
-    }
-    implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.9") {
-        exclude(group = "org.jetbrains.kotlinx", module = "kotlinx-coroutines-core")
-    }
-    implementation("io.ktor:ktor-client-cio:2.3.9"){
-        exclude(group = "org.jetbrains.kotlinx", module = "kotlinx-coroutines-core")
-    }
-    implementation("ch.qos.logback:logback-classic:1.5.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+//    implementation("io.ktor:ktor-client-core:2.3.9") {
+//        exclude(group = "org.jetbrains.kotlinx", module = "kotlinx-coroutines-core")
+//    }
+//    implementation("io.ktor:ktor-client-content-negotiation:2.3.9") {
+//        exclude(group = "org.jetbrains.kotlinx", module = "kotlinx-coroutines-core")
+//    }
+//    implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.9") {
+//        exclude(group = "org.jetbrains.kotlinx", module = "kotlinx-coroutines-core")
+//    }
+//    implementation("io.ktor:ktor-client-cio:2.3.9"){
+//        exclude(group = "org.jetbrains.kotlinx", module = "kotlinx-coroutines-core")
+//    }
+//    implementation("ch.qos.logback:logback-classic:1.5.3")
 }
 
 // Set the JVM language level used to build the project.

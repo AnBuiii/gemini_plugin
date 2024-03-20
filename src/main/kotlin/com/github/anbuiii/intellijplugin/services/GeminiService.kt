@@ -1,14 +1,11 @@
 package com.github.anbuiii.intellijplugin.services
 
-//import com.github.anbuiii.intellijplugin.network.ApiController
 import com.github.anbuiii.intellijplugin.network.ApiController
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.openapi.components.Service
-import com.intellij.openapi.project.Project
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 
 @Service
@@ -33,7 +30,7 @@ class GeminiService(
 
         cs.launch {
             var answer = controller.askGemini(text)
-
+//            var answer = controller.a(text)
             answer = "/**\n" +
                     "$answer\n" +
                     "*/\n"
