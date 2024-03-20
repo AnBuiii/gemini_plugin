@@ -37,7 +37,10 @@ dependencies {
 //    implementation("io.ktor:ktor-client-cio:2.3.9"){
 //        exclude(group = "org.jetbrains.kotlinx", module = "kotlinx-coroutines-core")
 //    }
+
 //    implementation("ch.qos.logback:logback-classic:1.5.3")
+
+    implementation(libs.annotations)
 }
 
 // Set the JVM language level used to build the project.

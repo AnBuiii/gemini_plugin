@@ -4,13 +4,19 @@ import com.github.anbuiii.intellijplugin.network.model.Content
 import com.github.anbuiii.intellijplugin.network.model.GeminiRequest
 import com.github.anbuiii.intellijplugin.network.model.GeminiResponse
 import com.github.anbuiii.intellijplugin.network.model.Parts
-import com.intellij.openapi.progress.ProgressIndicator
-import com.intellij.openapi.progress.coroutineToIndicator
-import com.intellij.openapi.progress.impl.BackgroundableProcessIndicator
-import com.intellij.openapi.progress.runBlockingCancellable
+import com.intellij.icons.AllIcons
+import io.ktor.client.*
+import io.ktor.client.call.*
+import io.ktor.client.engine.cio.*
+import io.ktor.client.plugins.*
+import io.ktor.client.plugins.BodyProgress.Plugin.install
+import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.client.request.*
+import io.ktor.client.statement.*
+import io.ktor.http.*
+import io.ktor.serialization.kotlinx.json.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import java.io.BufferedInputStream
@@ -23,7 +29,6 @@ import java.net.URL
 
 class ApiController {
     suspend fun askGemini(value: String): String {
-
         return withContext(Dispatchers.IO) {
             val host = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent"
             val parameter = "key=AIzaSyDWMjcBrh47GUFWmyptX85WsAw9vkUvzjQ"
@@ -64,5 +69,50 @@ class ApiController {
 
     private fun generateRequestBody(value: String): GeminiRequest {
         return GeminiRequest(arrayListOf(Content(arrayListOf(Parts(value)))))
+    }
+
+    val client by lazy {
+        HttpClient(CIO) {
+            install(DefaultRequest) {
+
+            }
+            install(DefaultRequest) {
+                contentType(ContentType.Application.Json)
+            }
+//            install(ContentNegotiation){
+//                json()
+//            }
+//            install(ContentNegotiation) {
+//                json(Json {
+//                    ignoreUnknownKeys = true
+//                    prettyPrint = true
+//                    isLenient = true
+//                })
+//            }
+        }
+    }
+
+    suspend fun askGemini2(content: String): String {
+        return try {
+            val body = GeminiRequest(arrayListOf(Content(arrayListOf(Parts(content)))))
+
+            val bodyContent = Json.encodeToString(body)
+            val response =
+                client.post("https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent") {
+                    setBody(bodyContent)
+                    parameter("key", "AIzaSyDWMjcBrh47GUFWmyptX85WsAw9vkUvzjQ")
+                }
+            val responseString = Json.decodeFromString<GeminiResponse>(response.bodyAsText())
+            val responseBuilder = StringBuilder()
+            responseString.candidates.forEach {
+                it.content?.parts?.forEach {
+                    responseBuilder.append(it.text)
+                }
+            }
+            responseBuilder.toString()
+        } catch (e: Exception) {
+            e.message ?: "";
+        }
+
     }
 }

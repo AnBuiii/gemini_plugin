@@ -8,6 +8,7 @@ import com.intellij.openapi.components.Service
 import com.intellij.openapi.progress.*
 import com.intellij.platform.ide.progress.withBackgroundProgress
 import io.ktor.client.*
+import io.ktor.client.request.*
 import kotlinx.coroutines.*
 
 @Suppress("UnstableApiUsage")
@@ -19,6 +20,7 @@ class GeminiService(
     private val controller = ApiController()
 
     fun getAnswer(e: AnActionEvent) {
+
         val editor = e.getRequiredData(CommonDataKeys.EDITOR)
         val projects = e.getRequiredData(CommonDataKeys.PROJECT)
         val project = e.project!!
@@ -37,7 +39,7 @@ class GeminiService(
             ensureActive()
             withContext(Dispatchers.Main) {
                 withBackgroundProgress(project, "Gemini is generating answer...", true) {
-                    var answer = controller.askGemini(text)
+                    var answer = controller.askGemini2(text)
                     answer = "/**\n" +
                             "$answer\n" +
                             "*/\n"
