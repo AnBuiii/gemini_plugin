@@ -5,6 +5,7 @@ import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.openapi.application.ApplicationManager
+import com.intellij.openapi.progress.impl.BackgroundableProcessIndicator
 
 
 class GeminiAskQuestionAction : AnAction() {
@@ -14,7 +15,8 @@ class GeminiAskQuestionAction : AnAction() {
     )
 
     override fun actionPerformed(e: AnActionEvent) {
-        service.getAswer(e)
+        val p = e.project
+        service.getAnswer(e)
     }
 
     override fun update(e: AnActionEvent) {

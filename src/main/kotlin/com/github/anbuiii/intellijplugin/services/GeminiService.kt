@@ -5,19 +5,23 @@ import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.openapi.components.Service
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
+import com.intellij.openapi.progress.*
+import com.intellij.platform.ide.progress.withBackgroundProgress
+import io.ktor.client.*
+import kotlinx.coroutines.*
 
+@Suppress("UnstableApiUsage")
 @Service
 class GeminiService(
     private val cs: CoroutineScope
 ) {
 
-    val controller = ApiController()
+    private val controller = ApiController()
 
-    fun getAswer(e: AnActionEvent) {
+    fun getAnswer(e: AnActionEvent) {
         val editor = e.getRequiredData(CommonDataKeys.EDITOR)
         val projects = e.getRequiredData(CommonDataKeys.PROJECT)
+        val project = e.project!!
 
         val document = editor.document
 
@@ -28,24 +32,30 @@ class GeminiService(
 
         val text = primaryCaret.selectedText ?: ""
 
+//        ProgressManager.getInstance().run(Task.)
         cs.launch {
-            var answer = controller.askGemini(text)
-//            var answer = controller.a(text)
-            answer = "/**\n" +
-                    "$answer\n" +
-                    "*/\n"
+            ensureActive()
+            withContext(Dispatchers.Main) {
+                withBackgroundProgress(project, "Gemini is generating answer...", true) {
+                    var answer = controller.askGemini(text)
+                    answer = "/**\n" +
+                            "$answer\n" +
+                            "*/\n"
 
-            WriteCommandAction.runWriteCommandAction(
-                projects
-            ) {
-                document.replaceString(
-                    start,
-                    start,
-                    answer,
-                )
+                    WriteCommandAction.runWriteCommandAction(
+                        projects
+                    ) {
+                        document.replaceString(
+                            start,
+                            start,
+                            answer,
+                        )
+                    }
+                }
             }
-
+//
         }
+
         primaryCaret.removeSelection()
     }
 }

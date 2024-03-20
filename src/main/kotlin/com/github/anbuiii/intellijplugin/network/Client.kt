@@ -1,9 +1,15 @@
 package com.github.anbuiii.intellijplugin.network
 
-import com.google.gson.annotations.SerializedName
+import com.github.anbuiii.intellijplugin.network.model.Content
+import com.github.anbuiii.intellijplugin.network.model.GeminiRequest
+import com.github.anbuiii.intellijplugin.network.model.GeminiResponse
+import com.github.anbuiii.intellijplugin.network.model.Parts
+import com.intellij.openapi.progress.ProgressIndicator
+import com.intellij.openapi.progress.coroutineToIndicator
+import com.intellij.openapi.progress.impl.BackgroundableProcessIndicator
+import com.intellij.openapi.progress.runBlockingCancellable
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -17,10 +23,11 @@ import java.net.URL
 
 class ApiController {
     suspend fun askGemini(value: String): String {
+
         return withContext(Dispatchers.IO) {
             val host = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent"
             val parameter = "key=AIzaSyDWMjcBrh47GUFWmyptX85WsAw9vkUvzjQ"
-            val body = GeminiRequest(arrayListOf(Content(arrayListOf(Parts(value)))))
+            val body = generateRequestBody(value)
 
             val url = URL("$host?$parameter")
             val httpCon = url.openConnection() as HttpURLConnection
@@ -34,7 +41,6 @@ class ApiController {
             osw.close()
             os.close() //don't forget to close the OutputStream
             httpCon.connect()
-
 
             val bis = BufferedInputStream(httpCon.inputStream)
             val buf = ByteArrayOutputStream()
@@ -51,60 +57,12 @@ class ApiController {
                 }
             }
             responseBuilder.toString()
+
+
         }
     }
+
+    private fun generateRequestBody(value: String): GeminiRequest {
+        return GeminiRequest(arrayListOf(Content(arrayListOf(Parts(value)))))
+    }
 }
-
-
-@Serializable
-data class GeminiRequest(
-    @SerializedName("contents") var contents: ArrayList<Content> = arrayListOf()
-)
-
-@Serializable
-data class GeminiResponse(
-    @SerializedName("candidates")
-    var candidates: ArrayList<Candidates> = arrayListOf(),
-
-    @SerializedName("promptFeedback")
-    var promptFeedback: PromptFeedback? = PromptFeedback()
-)
-
-@Serializable
-data class Parts(
-    @SerializedName("text")
-    var text: String? = null
-)
-
-@Serializable
-data class Content(
-    @SerializedName("parts")
-    var parts: ArrayList<Parts> = arrayListOf(),
-
-    @SerializedName("role")
-    var role: String? = null
-)
-
-@Serializable
-data class SafetyRatings(
-
-    @SerializedName("category") var category: String? = null,
-    @SerializedName("probability") var probability: String? = null
-
-)
-
-@Serializable
-data class Candidates(
-
-    @SerializedName("content") var content: Content? = Content(),
-    @SerializedName("finishReason") var finishReason: String? = null,
-    @SerializedName("index") var index: Int? = null,
-    @SerializedName("safetyRatings") var safetyRatings: ArrayList<SafetyRatings> = arrayListOf()
-
-)
-
-@Serializable
-data class PromptFeedback(
-    @SerializedName("safetyRatings") var safetyRatings: ArrayList<SafetyRatings> = arrayListOf()
-
-)
