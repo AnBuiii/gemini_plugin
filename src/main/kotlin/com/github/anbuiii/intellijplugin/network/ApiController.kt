@@ -52,9 +52,10 @@ class ApiController {
                     responseBuilder.append(part.text)
                 }
             }
-            responseBuilder.toString()
+            val answer = responseBuilder.toString()
+            answer.ifBlank { "Something wrong, recommend to check you API key" }
         } catch (e: Exception) {
-            e.message ?: ""
+            return "Something went wrong."
         }
     }
 }

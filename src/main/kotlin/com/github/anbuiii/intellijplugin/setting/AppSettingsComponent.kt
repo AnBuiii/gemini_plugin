@@ -12,13 +12,15 @@ import javax.swing.JPanel
 class AppSettingsComponent {
     var panel: JPanel
         private set
-    private val myGeminiApiText = JBTextField()
+
     private val myEnableStatus = JBCheckBox("Enable Gemini?")
+    private val myGeminiApiText = JBTextField()
 
     init {
         panel = FormBuilder.createFormBuilder()
             .addComponent(myEnableStatus, 1)
-            .addLabeledComponent(JBLabel("Enter user name: "), myGeminiApiText, 1, false)
+            .addVerticalGap(10)
+            .addLabeledComponent(JBLabel("API Key"), myGeminiApiText, 1, false)
             .addComponentFillVertically(JPanel(), 0)
             .panel
     }
@@ -36,6 +38,11 @@ class AppSettingsComponent {
         get() = myEnableStatus.isSelected
         set(newStatus) {
             myEnableStatus.isSelected = newStatus
-            myGeminiApiText.isEnabled = newStatus
+        }
+
+    var enableApiText: Boolean
+        get() = myGeminiApiText.isEnabled
+        set(enable) {
+            myGeminiApiText.isEnabled = enable
         }
 }
