@@ -1,6 +1,7 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>com.github.anbuiii.intellijplugin</id>
+    <idea-version since-build="233.14475.28"/>
+    <id>com.github.anbuiii.geminilugin</id>
     <name>Gemini</name>
     <vendor>anbuiii</vendor>
 
@@ -18,7 +19,6 @@
                 id="org.intellij.sdk.settings.AppSettingsConfigurable"
                 displayName="Gemini"/>
     </extensions>
-
     <actions>
         <action
                 id="AnBui.GeminiAsk"
