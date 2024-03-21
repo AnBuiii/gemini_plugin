@@ -1,6 +1,5 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <idea-version since-build="233.14475.28"/>
     <id>com.github.anbuiii.geminiplugin</id>
     <name>Gemini</name>
     <vendor>anbuiii</vendor>
