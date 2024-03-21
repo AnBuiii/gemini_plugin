@@ -17,6 +17,7 @@ internal class AppSettingsConfigurable : Configurable {
 
     override fun isModified(): Boolean {
         val settings: AppSettingsState = AppSettingsState.instance
+        mySettingsComponent!!.enableApiText = mySettingsComponent!!.enableStatus
         var modified = mySettingsComponent!!.geminiApiText != settings.geminiKey
         modified = modified or (mySettingsComponent!!.enableStatus != settings.enable)
         return modified
@@ -32,7 +33,7 @@ internal class AppSettingsConfigurable : Configurable {
         return "Gemini"
     }
 
-    override fun getPreferredFocusedComponent(): JComponent? {
+    override fun getPreferredFocusedComponent(): JComponent {
         return mySettingsComponent!!.preferredFocusedComponent
     }
 
