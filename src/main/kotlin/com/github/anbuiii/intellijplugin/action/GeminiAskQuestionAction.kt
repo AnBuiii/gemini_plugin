@@ -15,7 +15,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
-@ExperimentalStdlibApi
 class GeminiAskQuestionAction : AnAction() {
 
     private val service: GeminiService = ApplicationManager.getApplication().getService(
