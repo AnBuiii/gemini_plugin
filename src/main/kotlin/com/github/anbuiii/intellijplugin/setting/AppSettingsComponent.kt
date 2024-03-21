@@ -36,5 +36,6 @@ class AppSettingsComponent {
         get() = myEnableStatus.isSelected
         set(newStatus) {
             myEnableStatus.isSelected = newStatus
+            myGeminiApiText.isEnabled = newStatus
         }
 }

@@ -1,11 +1,13 @@
 package com.github.anbuiii.intellijplugin
 
+import com.github.anbuiii.intellijplugin.services.GeminiService
 import com.intellij.ide.highlighter.XmlFileType
 import com.intellij.openapi.components.service
 import com.intellij.psi.xml.XmlFile
 import com.intellij.testFramework.TestDataPath
 import com.intellij.testFramework.fixtures.BasePlatformTestCase
 import com.intellij.util.PsiErrorElementUtil
+import kotlinx.coroutines.runBlocking
 
 @TestDataPath("\$CONTENT_ROOT/src/test/testData")
 class MyPluginTest : BasePlatformTestCase() {
@@ -29,9 +31,11 @@ class MyPluginTest : BasePlatformTestCase() {
     }
 
     fun testProjectService() {
-        val projectService = project.service<MyProjectService>()
-
-        assertSame(projectService.getRandomNumber(), 12)
+        runBlocking {
+            val projectService = project.service<GeminiService>()
+            projectService.getAnswer("hello")
+            // We cannot test for an answer since we cannot direct a gemini key
+        }
     }
 
     override fun getTestDataPath() = "src/test/testData/rename"
