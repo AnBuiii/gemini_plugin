@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
-@Suppress("UnstableApiUsage")
+@ExperimentalStdlibApi
 class GeminiAskQuestionAction : AnAction() {
 
     private val service: GeminiService = ApplicationManager.getApplication().getService(
