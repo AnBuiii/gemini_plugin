@@ -10,6 +10,14 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <toolWindow factoryClass="com.github.anbuiii.intellijplugin.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
+        <applicationService
+                serviceImplementation="com.github.anbuiii.intellijplugin.setting.AppSettingsState"/>
+
+        <applicationConfigurable
+                parentId="tools"
+                instance="com.github.anbuiii.intellijplugin.setting.AppSettingsConfigurable"
+                id="org.intellij.sdk.settings.AppSettingsConfigurable"
+                displayName="Gemini"/>
     </extensions>
 
     <applicationListeners>
@@ -20,9 +28,9 @@
         <action
                 id="AnBui.GeminiAsk"
                 class="com.github.anbuiii.intellijplugin.action.GeminiAskQuestionAction"
-                text="Explain this!"
+                text="Explain This!"
                 description="Replaces selected text with 'Replacement'."
-                icon="com.github.anbuiii.intellijplugin.icons.TasksIcons">
+                icon="com.intellij.icons.ExpUiIcons.Toolwindow.MeetNewUi">
             <add-to-group group-id="EditorPopupMenu" anchor="first"/>
         </action>
     </actions>

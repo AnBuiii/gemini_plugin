@@ -4,17 +4,13 @@ import com.github.anbuiii.intellijplugin.network.model.Content
 import com.github.anbuiii.intellijplugin.network.model.GeminiRequest
 import com.github.anbuiii.intellijplugin.network.model.GeminiResponse
 import com.github.anbuiii.intellijplugin.network.model.Parts
-import com.intellij.icons.AllIcons
+import com.github.anbuiii.intellijplugin.setting.AppSettingsState
 import io.ktor.client.*
-import io.ktor.client.call.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.*
-import io.ktor.client.plugins.BodyProgress.Plugin.install
-import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
-import io.ktor.serialization.kotlinx.json.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.encodeToString
@@ -94,13 +90,13 @@ class ApiController {
 
     suspend fun askGemini2(content: String): String {
         return try {
-            val body = GeminiRequest(arrayListOf(Content(arrayListOf(Parts(content)))))
+            val body = generateRequestBody(content)
 
             val bodyContent = Json.encodeToString(body)
             val response =
                 client.post("https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent") {
                     setBody(bodyContent)
-                    parameter("key", "AIzaSyDWMjcBrh47GUFWmyptX85WsAw9vkUvzjQ")
+                    parameter("key", AppSettingsState.instance.geminiKey)
                 }
             val responseString = Json.decodeFromString<GeminiResponse>(response.bodyAsText())
             val responseBuilder = StringBuilder()
