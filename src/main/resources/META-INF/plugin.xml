@@ -9,7 +9,6 @@
     <resource-bundle>messages.MyBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.anbuiii.intellijplugin.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
         <applicationService
                 serviceImplementation="com.github.anbuiii.intellijplugin.setting.AppSettingsState"/>
 
@@ -20,10 +19,6 @@
                 displayName="Gemini"/>
     </extensions>
 
-    <applicationListeners>
-        <listener class="com.github.anbuiii.intellijplugin.listeners.MyApplicationActivationListener"
-                  topic="com.intellij.openapi.application.ApplicationActivationListener"/>
-    </applicationListeners>
     <actions>
         <action
                 id="AnBui.GeminiAsk"

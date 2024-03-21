@@ -25,21 +25,6 @@ repositories {
 // Dependencies are managed with Gradle version catalog - read more: https://docs.gradle.org/current/userguide/platforms.html#sub:version-catalog
 dependencies {
     implementation(libs.serialization)
-//    implementation("io.ktor:ktor-client-core:2.3.9") {
-//        exclude(group = "org.jetbrains.kotlinx", module = "kotlinx-coroutines-core")
-//    }
-//    implementation("io.ktor:ktor-client-content-negotiation:2.3.9") {
-//        exclude(group = "org.jetbrains.kotlinx", module = "kotlinx-coroutines-core")
-//    }
-//    implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.9") {
-//        exclude(group = "org.jetbrains.kotlinx", module = "kotlinx-coroutines-core")
-//    }
-//    implementation("io.ktor:ktor-client-cio:2.3.9"){
-//        exclude(group = "org.jetbrains.kotlinx", module = "kotlinx-coroutines-core")
-//    }
-
-//    implementation("ch.qos.logback:logback-classic:1.5.3")
-
 //    implementation(libs.annotations)
 }
 
