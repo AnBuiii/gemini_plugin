@@ -20,9 +20,12 @@ Auto generate answer in code editor backed by Google's Gemini
 
 - Manually:
 
-  Download the [latest release](https://github.com/AnBuiii/intellij_plugin/releases/latest) and install it manually
+  Download the [latest release](https://github.com/AnBuiii/intellij_plugin/releases/latest) 
+
+[//]: # (- and install it manually)
   using
-  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
+
+[//]: # (  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>)
 
 ---
 
