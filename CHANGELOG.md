@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+## [0.1.2] - 2024-03-24
+
+- fix_description by @AnBuiii in https://github.com/AnBuiii/gemini_plugin/pull/12
+
 ## [0.1.0-RC1] - 2024-03-22
 
 ### Added
@@ -15,5 +19,6 @@
 - Progress Indicator for background process
 - Setting tool page
 
-[Unreleased]: https://github.com/AnBuiii/gemini_plugin/compare/v0.1.0-RC1...HEAD
+[Unreleased]: https://github.com/AnBuiii/gemini_plugin/compare/v0.1.2...HEAD
+[0.1.2]: https://github.com/AnBuiii/gemini_plugin/compare/v0.1.0-RC1...v0.1.2
 [0.1.0-RC1]: https://github.com/AnBuiii/gemini_plugin/commits/v0.1.0-RC1
