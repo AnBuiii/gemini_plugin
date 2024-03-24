@@ -33,6 +33,9 @@ Simply get the answer from [Google's Gemini API](https://gemini.google.com/app) 
 - [ ] Add tool window for asked questions and answers
 - [ ] Maybe another LLM (ChatGPT, Lllama 2,...)
 
+## Contribute
+If you want to contribute to this library, you're always welcome!
+
 Plugin based on the [IntelliJ Platform Plugin Template][template].
 
 [template]: https://github.com/JetBrains/intellij-platform-plugin-template
