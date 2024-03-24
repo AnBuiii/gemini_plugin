@@ -4,6 +4,8 @@
 [![Version](https://img.shields.io/jetbrains/plugin/v/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/24010-gemini)
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/24010-gemini)
 
+![new gemini 2](https://github.com/AnBuiii/gemini_plugin/assets/89350086/8e43d9ab-5f8c-4132-ae22-97983505862f)
+
 <!-- Plugin description -->
 
 ## Description
@@ -24,8 +26,7 @@ Simply get the answer from [Google's Gemini API](https://gemini.google.com/app) 
    - Or download [latest release](https://github.com/AnBuiii/intellij_plugin/releases/latest) (the signed .zip) and manually install: <kbd>Settings</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
 - Enable the plugin: <kbd>Settings</kbd> > <kbd>Tools</kbd> > <kbd>Gemini</kbd> > Tick <kbd>Enable Gemini?</kbd> > Insert your **API Key** > <kbd>Apply</kbd>
 - Select anything on editor > Right click > <kbd>Explain this!</kbd> > Get the answer
-
-
+- 
 <!-- Plugin description end -->
 
 ## Todo
