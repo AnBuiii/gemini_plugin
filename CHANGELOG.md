@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+## [0.1.3] - 2024-04-26
+
+Change plugin's name, requested by Jetbrains
+
 ## [0.1.0-RC1] - 2024-03-22
 
 ### Added
@@ -15,5 +19,6 @@
 - Progress Indicator for background process
 - Setting tool page
 
-[Unreleased]: https://github.com/AnBuiii/gemini_plugin/compare/v0.1.0-RC1...HEAD
+[Unreleased]: https://github.com/AnBuiii/gemini_plugin/compare/v0.1.3...HEAD
+[0.1.3]: https://github.com/AnBuiii/gemini_plugin/compare/v0.1.0-RC1...v0.1.3
 [0.1.0-RC1]: https://github.com/AnBuiii/gemini_plugin/commits/v0.1.0-RC1
