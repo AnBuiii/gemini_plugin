@@ -10,7 +10,9 @@
 
 ## Description
 
-Gemini is Intellij Platform's plugin that auto generate answer in code editor backed by Google's Gemini
+Gemini is Intellij Platform's plugin that auto generate answer in code editor backed by Google's Gemini.
+
+This is an open source project developed by [AnBui](https://github.com/AnBuiii) only for education purpose!
 
 ## How it works?
 
