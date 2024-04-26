@@ -16,7 +16,7 @@
                 parentId="tools"
                 instance="com.github.anbuiii.intellijplugin.setting.AppSettingsConfigurable"
                 id="org.intellij.sdk.settings.AppSettingsConfigurable"
-                displayName="Gemini"/>
+                displayName="Gemini For Education"/>
     </extensions>
     <actions>
         <action
